@@ -30,6 +30,12 @@ steps:
       command: "build"
       projects: $(solution)
       arguments: "-c $(buildConfiguration) --no-restore --nologo"
+  - task: DotNetCoreCLI@2
+    displayName: Publish Solution
+    inputs:
+      command: "publish"
+      projects: $(solution)
+      arguments: "-c $(buildConfiguration) --no-build --nologo"
   - task: Docker@2
     displayName: Build Docker Image
     inputs:
