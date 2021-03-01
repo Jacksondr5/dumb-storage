@@ -49,6 +49,6 @@ steps:
       containerRegistry: "Docker Hub"
       repository: jacksondr5/dumb-storage
       command: push
-      tags: |
-        $(Build.BuildNumber)
-        latest
+      # tags: |
+      #   $(Build.BuildNumber)
+      #   latest
