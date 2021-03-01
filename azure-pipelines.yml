@@ -36,6 +36,7 @@ steps:
       command: "publish"
       projects: $(solution)
       arguments: "-c $(buildConfiguration) --no-build --nologo"
+      zipAfterPublish: false
   - task: Bash@3
     inputs:
       targetType: inline
