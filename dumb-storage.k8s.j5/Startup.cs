@@ -9,6 +9,7 @@ namespace dumb_storage.k8s.j5
 {
     public class Startup
     {
+        private const string CorsPolicyName = "_k8s.j5 policy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -19,7 +20,20 @@ namespace dumb_storage.k8s.j5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(o =>
+                o.AddPolicy(
+                    name: CorsPolicyName,
+                    builder =>
+                    {
+                        builder
+                            .WithOrigins("http://*.j5")
+                            .SetIsOriginAllowedToAllowWildcardSubdomains();
+                        builder
+                            .WithOrigins("https://*.j5")
+                            .SetIsOriginAllowedToAllowWildcardSubdomains();
+                    }
+                )
+            );
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -50,6 +64,8 @@ namespace dumb_storage.k8s.j5
             // app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(CorsPolicyName);
 
             app.UseAuthorization();
 
