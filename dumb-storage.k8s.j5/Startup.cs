@@ -28,9 +28,9 @@ namespace dumb_storage.k8s.j5
                         builder
                             .WithOrigins("http://*.j5")
                             .SetIsOriginAllowedToAllowWildcardSubdomains();
-                        builder
-                            .WithOrigins("https://*.j5")
-                            .SetIsOriginAllowedToAllowWildcardSubdomains();
+                        //builder
+                        //    .WithOrigins("https://*.j5")
+                        //    .SetIsOriginAllowedToAllowWildcardSubdomains();
                     }
                 )
             );
