@@ -25,12 +25,10 @@ namespace dumb_storage.k8s.j5
                     name: CorsPolicyName,
                     builder =>
                     {
-                        builder
-                            .WithOrigins("http://*.j5")
-                            .SetIsOriginAllowedToAllowWildcardSubdomains();
                         //builder
-                        //    .WithOrigins("https://*.j5")
+                        //    .WithOrigins("http://*.j5")
                         //    .SetIsOriginAllowedToAllowWildcardSubdomains();
+                        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                     }
                 )
             );
